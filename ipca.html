@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Depreciação com IPCA</title>
+  <script>
+    function calcularDepreciacao() {
+      // Pegar os valores do formulário
+      var valorInicial = parseFloat(document.getElementById('valorInicial').value);
+      var taxaDepreciacaoAnual = parseFloat(document.getElementById('taxaDepreciacao').value);
+      var baseIPCA = parseFloat(document.getElementById('baseIPCA').value);
+
+      // Calcular a depreciação com base no IPCA
+      var taxaDepreciacaoTotal = (1 + (taxaDepreciacaoAnual / 100)) * (1 + (baseIPCA / 100)) - 1;
+      var valorDepreciado = valorInicial * Math.pow(1 - taxaDepreciacaoTotal, 1);
+
+      // Exibir o resultado
+      document.getElementById('resultado').innerHTML = "Valor depreciado: R$ " + valorDepreciado.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <h1>Calculadora de Depreciação com IPCA</h1>
+  <form>
+    <label for="valorInicial">Valor inicial do produto:</label>
+    <input type="number" id="valorInicial" placeholder="Digite o valor inicial" step="0.01"><br><br>
+
+    <label for="taxaDepreciacao">Taxa de depreciação anual (%):</label>
+    <input type="number" id="taxaDepreciacao" placeholder="Digite a taxa de depreciação"><br><br>
+
+    <label for="baseIPCA">Base do IPCA (%):</label>
+    <input type="number" id="baseIPCA" placeholder="Digite a base do IPCA"><br><br>
+
+    <button type="button" onclick="calcularDepreciacao()">Calcular</button>
+  </form>
+
+  <div id="resultado"></div>
+</body>
+</html>
